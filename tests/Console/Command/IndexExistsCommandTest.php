@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Cviebrock\LaravelElasticsearch\Tests\Console\Command;
 
 use Cviebrock\LaravelElasticsearch\Tests\TestCase;
-use Elasticsearch\Client;
-use Elasticsearch\Namespaces\IndicesNamespace;
+use Elastic\Elasticsearch\Client;
+use Elastic\Elasticsearch\Namespaces\IndicesNamespace;
 use Generator;
 use Mockery\MockInterface;
 

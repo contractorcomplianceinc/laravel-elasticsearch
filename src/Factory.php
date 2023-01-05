@@ -2,8 +2,8 @@
 
 namespace Cviebrock\LaravelElasticsearch;
 
-use Elasticsearch\Client;
-use Elasticsearch\ClientBuilder;
+use Elastic\Elasticsearch\Client;
+use Elastic\Elasticsearch\ClientBuilder;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
 use GuzzleHttp\Ring\Future\CompletedFutureArray;
