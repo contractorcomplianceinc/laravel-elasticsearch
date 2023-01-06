@@ -19,21 +19,54 @@ class Factory
 {
 
     /**
+     * Map configuration array keys with ES Client setters
+     *
+     * @var array
+     */
+    protected $clientConfigMappings = [
+        'aync'                => 'setAsync',
+        'elasticMetaHeader'   => 'setElasticMetaHeader',
+        'responseException'   => 'setResponseException',
+        // 'httpHandler'        => 'setHandler',
+        // 'connectionPool'     => 'setConnectionPool',
+        // 'connectionSelector' => 'setSelector',
+        // 'serializer'         => 'setSerializer',
+        // 'connectionFactory'  => 'setConnectionFactory',
+        // 'endpoint'           => 'setEndpoint',
+        // 'namespaces'         => 'registerNamespace',
+    ];
+
+    /**
      * Map configuration array keys with ES ClientBuilder setters
      *
      * @var array
      */
-    protected $configMappings = [
-        'sslVerification'    => 'setSSLVerification',
-        'sniffOnStart'       => 'setSniffOnStart',
-        'retries'            => 'setRetries',
-        'httpHandler'        => 'setHandler',
-        'connectionPool'     => 'setConnectionPool',
-        'connectionSelector' => 'setSelector',
-        'serializer'         => 'setSerializer',
-        'connectionFactory'  => 'setConnectionFactory',
-        'endpoint'           => 'setEndpoint',
-        'namespaces'         => 'registerNamespace',
+    protected $clientBuilderConfigMappings = [
+        'httpClient'          => 'setHttpClient',
+        'asyncHttpClient'     => 'setAsyncHttpClient',
+        // 'logger'             => 'setLogger',
+        'nodePool'            => 'setNodePool',
+        // 'hosts'               => 'setHosts',
+        // 'apiKey'              => 'setApiKey',
+        'basicAuthentication' => 'setBasicAuthentication',
+        'elasticCloudId'      => 'setElasticCloudId',
+        'retries'             => 'setRetries',
+        'sslCert'             => 'setSSLCert',
+        'caBundle'            => 'setCABundle',
+        'sslKey'              => 'setSSLKey',
+        'sslVerification'     => 'setSSLVerification',
+        'elasticMetaHeader'   => 'setElasticMetaHeader',
+        'httpClientOptions'   => 'setHttpClientOptions',
+        // 'sslVerification'    => 'setSSLVerification',
+        // 'sniffOnStart'       => 'setSniffOnStart',
+        // 'retries'            => 'setRetries',
+        // 'httpHandler'        => 'setHandler',
+        // 'connectionPool'     => 'setConnectionPool',
+        // 'connectionSelector' => 'setSelector',
+        // 'serializer'         => 'setSerializer',
+        // 'connectionFactory'  => 'setConnectionFactory',
+        // 'endpoint'           => 'setEndpoint',
+        // 'namespaces'         => 'registerNamespace',
     ];
 
     /**
@@ -79,12 +112,12 @@ class Factory
         }
 
         // Configure tracer
-        if ($tracer = Arr::get($config, 'tracer')) {
-            $clientBuilder->setTracer(app($tracer));
-        }
+        // if ($tracer = Arr::get($config, 'tracer')) {
+        //     $clientBuilder->setTracer(app($tracer));
+        // }
 
         // Set additional client configuration
-        foreach ($this->configMappings as $key => $method) {
+        foreach ($this->clientBuilderConfigMappings as $key => $method) {
             $value = Arr::get($config, $key);
             if (is_array($value)) {
                 foreach ($value as $vItem) {
