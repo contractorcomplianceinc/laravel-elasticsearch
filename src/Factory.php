@@ -94,7 +94,10 @@ class Factory
         $clientBuilder = ClientBuilder::create();
 
         // Configure hosts
-        $clientBuilder->setHosts($config['hosts']);
+        foreach($config['hosts'] as $host) {
+            $hosts[] = $host['host'] . ':' . $host['port'];
+        }
+        $clientBuilder->setHosts($hosts);
 
         // Configure logging
         if (Arr::get($config, 'logging')) {

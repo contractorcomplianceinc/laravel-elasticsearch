@@ -27,9 +27,9 @@ class ServiceProviderTests extends TestCase
      */
     public function testFacadeWorks(): void
     {
-        $ping = Elasticsearch::ping();
+        $response = Elasticsearch::ping();
 
-        $this->assertTrue($ping);
+        $this->assertTrue($response->getStatusCode() === 200);
     }
 
     /**
@@ -39,7 +39,7 @@ class ServiceProviderTests extends TestCase
     {
         $info = Elasticsearch::info();
 
-        $this->assertIsArray($info);
+        $this->assertInstanceOf(\Elastic\Elasticsearch\Response\Elasticsearch::class, $info);
         $this->assertArrayHasKey('cluster_name', $info);
     }
 }
